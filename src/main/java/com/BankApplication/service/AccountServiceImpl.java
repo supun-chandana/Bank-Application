@@ -53,7 +53,33 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account withdrawAmount(Long accountNumber, Double amount) {
-        return null;
+
+        Optional <Account> account = repo.findById(accountNumber);
+        if (account.isEmpty()){
+            throw new RuntimeException("Account does not exist");
+        }
+        Account accountPresent = account.get();
+
+        /*
+        Double accountBalance = accountPresent.getAccount_balance()-amount;
+        accountPresent.setAccount_balance(accountBalance);
+        repo.save(accountPresent);
+        return accountPresent;
+
+         */
+
+        Double currentBalance = accountPresent.getAccount_balance();
+
+        // Check if withdrawal will result in a negative balance
+        if (currentBalance < amount) {
+            throw new RuntimeException("Insufficient funds. Withdrawal not possible.");
+        }
+
+        Double updatedBalance = currentBalance - amount;
+        accountPresent.setAccount_balance(updatedBalance);
+        repo.save(accountPresent);
+
+        return accountPresent;
     }
 
     @Override

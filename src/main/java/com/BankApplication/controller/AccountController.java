@@ -45,10 +45,19 @@ public class AccountController {
     }
 
     //deposit
+    @PutMapping("/withdraw/{accountNumber}/{amount}")
+    public Account withdrawAccount (@PathVariable Long accountNumber,@PathVariable Double amount){
+        Account account = service.withdrawAmount(accountNumber,amount);
+        return account;
+    }
+
+    //withdraw
     @PutMapping("/deposit/{accountNumber}/{amount}")
     public Account depositAccount (@PathVariable Long accountNumber,@PathVariable Double amount){
         Account account = service.depositAmount(accountNumber,amount);
         return account;
     }
+
+
 
 }

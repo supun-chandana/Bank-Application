@@ -84,6 +84,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account closeAccount(Long accountNumber) {
+
+        getAccountDetailsByAccountNumber(accountNumber);
+        repo.deleteById(accountNumber);
         return null;
     }
 }

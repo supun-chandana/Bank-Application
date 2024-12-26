@@ -58,6 +58,14 @@ public class AccountController {
         return account;
     }
 
+    //Close Account
+    @DeleteMapping("/delete/{accountNumber}")
+    public ResponseEntity<String> deleteAccount (@PathVariable Long accountNumber){
+        service.closeAccount(accountNumber);
+        return ResponseEntity.ok("Account Closed");
+    }
+
+
 
 
 }

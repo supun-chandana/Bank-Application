@@ -34,7 +34,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<Account> getAllAccountDetails() {
-        return List.of();
+        List<Account> listOfAccounts = repo.findAll();
+        return listOfAccounts;
     }
 
     @Override

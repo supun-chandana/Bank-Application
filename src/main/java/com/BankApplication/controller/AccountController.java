@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/account")  //request mapping url
+
 public class AccountController {
 
 
@@ -24,4 +25,13 @@ public class AccountController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createAccount);
     }
+
+
+    //Account Details by Acc No
+    @GetMapping("/{accountNumber}")
+    public Account getAccountByAccountNumber(@PathVariable Long accountNumber){
+        Account account = service.getAccountDetailsByAccountNumber(accountNumber);
+        return account;
+    }
+
 }

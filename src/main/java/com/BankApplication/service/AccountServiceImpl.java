@@ -5,6 +5,7 @@ import com.BankApplication.repo.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,10 @@ public class AccountServiceImpl implements AccountService {
        Optional<Account> account= repo.findById(accountNumber);
        // throw exception if account is empty
        if(account.isEmpty()){
-           throw new RuntimeException("Account does not exist");
+          throw new RuntimeException(".......Account does not exist ...!!!");
+
+
+
        }
        Account account_found = account.get();
        return account_found;
@@ -42,7 +46,8 @@ public class AccountServiceImpl implements AccountService {
     public Account depositAmount(Long accountNumber, Double amount) {
         Optional <Account> account = repo.findById(accountNumber);
         if (account.isEmpty()){
-            throw new RuntimeException("Account does not exist");
+            throw new RuntimeException(".......Account does not exist ...!!!");
+
         }
         Account accountPresent = account.get();
         Double totalBalance = accountPresent.getAccount_balance()+amount;
@@ -56,7 +61,7 @@ public class AccountServiceImpl implements AccountService {
 
         Optional <Account> account = repo.findById(accountNumber);
         if (account.isEmpty()){
-            throw new RuntimeException("Account does not exist");
+            throw new RuntimeException(".......Account does not exist ...!!!");
         }
         Account accountPresent = account.get();
 
@@ -72,7 +77,7 @@ public class AccountServiceImpl implements AccountService {
 
         // Check if withdrawal will result in a negative balance
         if (currentBalance < amount) {
-            throw new RuntimeException("Insufficient funds. Withdrawal not possible.");
+            throw new RuntimeException("......Insufficient funds. Withdrawal not possible....!!!!");
         }
 
         Double updatedBalance = currentBalance - amount;

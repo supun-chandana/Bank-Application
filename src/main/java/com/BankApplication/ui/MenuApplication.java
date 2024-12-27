@@ -48,6 +48,9 @@ public class MenuApplication {
                     break;
                 case 7:
                     System.out.println("Exiting the application.");
+                    scanner.close();
+                    System.exit(0);
+
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -56,71 +59,126 @@ public class MenuApplication {
     }
 
     private void createAccount(Scanner scanner) {
-        System.out.print("Enter account holder name: ");
-        scanner.nextLine(); // Consume newline
-        String name = scanner.nextLine();
-        System.out.print("Enter initial balance: ");
-        double balance = scanner.nextDouble();
+        try {
+            System.out.print("Enter account holder name: ");
+            scanner.nextLine(); // Consume newline
+            String name = scanner.nextLine();
+            System.out.print("Enter initial balance: ");
+            double balance = scanner.nextDouble();
 
-        Account account = new Account(name, balance);
-        Account createdAccount = accountService.createAccount(account);
-        System.out.println("Account created successfully: " + createdAccount);
+            Account account = new Account(name, balance);
+            Account createdAccount = accountService.createAccount(account);
+            System.out.println("Account created successfully: " + createdAccount);
+        } catch (Exception e) {
+            System.out.println("An error occurred while creating the account: " + e.getMessage());
+        }
     }
 
     private void getAccountDetails(Scanner scanner) {
-        System.out.print("Enter account number: ");
-        Long accountNumber = scanner.nextLong();
+        try {
+            System.out.print("Enter account number: ");
+            Long accountNumber = scanner.nextLong();
 
-        Account account = accountService.getAccountDetailsByAccountNumber(accountNumber);
-        if (account != null) {
-            System.out.println("Account Details: " + account);
-        } else {
-            System.out.println("Account not found.");
+            Account account = accountService.getAccountDetailsByAccountNumber(accountNumber);
+            if (account != null) {
+                System.out.println("Account Details: " + account);
+            } else {
+                System.out.println("Account not found.");
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while fetching account details: " + e.getMessage());
         }
     }
 
     private void getAllAccounts() {
-        System.out.println("Fetching all account details...");
-        accountService.getAllAccountDetails().forEach(System.out::println);
+        try {
+            System.out.println("Fetching all account details...");
+            accountService.getAllAccountDetails().forEach(System.out::println);
+        } catch (Exception e) {
+            System.out.println("An error occurred while fetching all account details: " + e.getMessage());
+        }
     }
 
     private void depositMoney(Scanner scanner) {
-        System.out.print("Enter account number: ");
-        Long accountNumber = scanner.nextLong();
-        System.out.print("Enter amount to deposit: ");
-        double amount = scanner.nextDouble();
+        try {
+            System.out.print("Enter account number: ");
+            Long accountNumber = scanner.nextLong();
+            System.out.print("Enter amount to deposit: ");
+            double amount = scanner.nextDouble();
 
-        Account updatedAccount = accountService.depositAmount(accountNumber, amount);
-        if (updatedAccount != null) {
-            System.out.println("Deposit successful. Updated Account Details: " + updatedAccount);
-        } else {
-            System.out.println("Account not found.");
+            Account updatedAccount = accountService.depositAmount(accountNumber, amount);
+            if (updatedAccount != null) {
+                System.out.println("Deposit successful. Updated Account Details: " + updatedAccount);
+            } else {
+                System.out.println("Account not found.");
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while depositing money: " + e.getMessage());
         }
     }
 
     private void withdrawMoney(Scanner scanner) {
-        System.out.print("Enter account number: ");
-        Long accountNumber = scanner.nextLong();
-        System.out.print("Enter amount to withdraw: ");
-        double amount = scanner.nextDouble();
+        try {
+            System.out.print("Enter account number: ");
+            Long accountNumber = scanner.nextLong();
+            System.out.print("Enter amount to withdraw: ");
+            double amount = scanner.nextDouble();
 
-        Account updatedAccount = accountService.withdrawAmount(accountNumber, amount);
-        if (updatedAccount != null) {
-            System.out.println("Withdrawal successful. Updated Account Details: " + updatedAccount);
-        } else {
-            System.out.println("Account not found or insufficient balance.");
+            Account updatedAccount = accountService.withdrawAmount(accountNumber, amount);
+            if (updatedAccount != null) {
+                System.out.println("Withdrawal successful. Updated Account Details: " + updatedAccount);
+            } else {
+                System.out.println("Account not found or insufficient balance.");
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while withdrawing money: " + e.getMessage());
         }
     }
+
 
     private void closeAccount(Scanner scanner) {
-        System.out.print("Enter account number: ");
-        Long accountNumber = scanner.nextLong();
 
-        Account closedAccount = accountService.closeAccount(accountNumber);
-        if (closedAccount != null) {
-            System.out.println("Account closed successfully: " + closedAccount);
-        } else {
-            System.out.println("Account not found.");
+        try{
+
+            System.out.print("Enter account number: ");
+            Long accountNumber = scanner.nextLong();
+
+            Account closedAccount = accountService.closeAccount(accountNumber);
+
+            if (closedAccount != null) {
+                //System.out.println("Account closed successfully: " + closedAccount);
+                System.out.println("Account not found.");
+            } else {
+                // System.out.println("Account not found.");
+                System.out.println("Account closed successfully: " + closedAccount);
+            }
+
+        }
+
+        catch  (Exception e) { System.out.println("An error occurred while closing the account: " + e.getMessage());
+
+
+        }
+
+    }
+
+
+/*
+    private void closeAccount(Scanner scanner) {
+        try { System.out.print("Enter account number: ");
+            Long accountNumber = scanner.nextLong();
+            Account closedAccount = accountService.closeAccount(accountNumber);
+            if (closedAccount != null) {
+                System.out.println("Account closed successfully: " + closedAccount);
+            }
+            else {
+                System.out.println("Account not found.");
+            }
+        }
+        catch (Exception e) { System.out.println("An error occurred while closing the account: " + e.getMessage());
         }
     }
+
+ */
+
 }

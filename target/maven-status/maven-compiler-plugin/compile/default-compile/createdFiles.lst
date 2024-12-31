@@ -1,0 +1,7 @@
+com\BankApplication\BankApplication.class
+com\BankApplication\controller\AccountController.class
+com\BankApplication\repo\AccountRepository.class
+com\BankApplication\service\AccountServiceImpl.class
+com\BankApplication\service\AccountService.class
+com\BankApplication\ui\MenuApplication.class
+com\BankApplication\entity\Account.class

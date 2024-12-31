@@ -155,9 +155,8 @@ public class MenuApplication {
 
         }
 
-        catch  (Exception e) { System.out.println("An error occurred while closing the account: " + e.getMessage());
-
-
+        catch  (Exception e) {
+            System.out.println("An error occurred while closing the account: " + e.getMessage());
         }
 
     }

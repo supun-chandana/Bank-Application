@@ -1,7 +1,6 @@
 FROM openjdk:17
 
-ENV PORT 8080
-EXPOSE $PORT
+EXPOSE 8080
 
-ADD target/Bank-Application.jar Bank-Application.jar
+ADD target/Bank-Application-0.0.1-SNAPSHOT.jar Bank-Application-0.0.1-SNAPSHOT.jar
 ENTRYPOINT ["java", "-jar", "Bank-Application-0.0.1-SNAPSHOT.jar"]

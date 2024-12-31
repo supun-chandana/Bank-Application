@@ -63,6 +63,9 @@
 			</plugin>
 		</plugins>
 
+
+		<finalName>Bank-Application</finalName>
+
 	</build>
 
 </project>

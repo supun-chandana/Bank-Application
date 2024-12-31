@@ -30,6 +30,13 @@ public class AccountServiceImpl implements AccountService {
             throw new RuntimeException(".......Account cannot be created with a negative balance.......");
         }
 
+        // Validate that the account name is not empty or null
+        if (account.getAccount_holder_name() == null || account.getAccount_holder_name().trim().isEmpty()) {
+            throw new RuntimeException(".......Account name cannot be empty.......");
+        }
+
+
+
         // Save the account if validation passes
         Account account_saved = repo.save(account);
         return account_saved;
@@ -51,8 +58,21 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    /*
     public List<Account> getAllAccountDetails() {
         List<Account> listOfAccounts = repo.findAll();
+        return listOfAccounts;
+    }
+
+     */
+    public List<Account> getAllAccountDetails() {
+        List<Account> listOfAccounts = repo.findAll();
+
+        // Check if no accounts are found and throw an exception
+        if (listOfAccounts.isEmpty()) {
+            throw new RuntimeException(".......No accounts found in the database.......");
+        }
+
         return listOfAccounts;
     }
 

@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     // Push Docker image to Docker Hub
-                    sh 'docker push yourdockerhub/bank-application:v1'
+                    sh 'docker push schandana/bank-application:v1'
                 }
             }
         }

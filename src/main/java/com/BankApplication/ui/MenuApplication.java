@@ -15,7 +15,8 @@ public class MenuApplication {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        boolean keepRunning = true; // Flag to control the loop
+        boolean keepRunning = false; // Flag to control the loop
+
         while (keepRunning) {
             System.out.println("\n=== Bank Application Menu ===");
             System.out.println("1. Create Account");

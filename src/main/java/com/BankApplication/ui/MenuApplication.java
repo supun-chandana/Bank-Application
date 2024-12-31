@@ -15,7 +15,8 @@ public class MenuApplication {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        boolean keepRunning = true; // Flag to control the loop
+        while (keepRunning) {
             System.out.println("\n=== Bank Application Menu ===");
             System.out.println("1. Create Account");
             System.out.println("2. Get Account Details by Account Number");
@@ -48,7 +49,8 @@ public class MenuApplication {
                     break;
                 case 7:
                     System.out.println("Exiting the application.");
-                    scanner.close();
+                    //scanner.close();
+                    keepRunning = false; // Terminate the loop
                     System.exit(0);
 
                     return;
